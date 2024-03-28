@@ -22,7 +22,11 @@ def positive_assert(kit_body):
 
     assert kit_response.status_code == 201
     assert kit_response.json() != ""
+<<<<<<< HEAD
     # Assert para comprobar que el cuerpo de la respuesta en el parámetro name coincide con el de la solicitud
+=======
+    # Assert para comprobar que el cuerpo de la respusta en el parametro name coincide con el de la solicitud
+>>>>>>> 6610fc11b762cb46bc1980020c9fc4f2474d7c63
     assert kit_body["name"] != ""
 
 
