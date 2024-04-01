@@ -18,22 +18,21 @@ def get_kit_body(name):
 # Función de prueba positiva
 def positive_assert(kit_body):
     kit_body = get_kit_body(kit_body)
-    kit_response = sender_stand_request.post_new_client_kit(kit_body, data.auth_token)
+    # Obtener el token
+    auth_token = get_new_user_token()
+    kit_response = sender_stand_request.post_new_client_kit(kit_body, auth_token)
 
     assert kit_response.status_code == 201
     assert kit_response.json() != ""
-<<<<<<< HEAD
-    # Assert para comprobar que el cuerpo de la respuesta en el parámetro name coincide con el de la solicitud
-=======
-    # Assert para comprobar que el cuerpo de la respusta en el parametro name coincide con el de la solicitud
->>>>>>> 6610fc11b762cb46bc1980020c9fc4f2474d7c63
-    assert kit_body["name"] != ""
+    # Assert para comprobar que el cuerpo de la respuesta en el parámauth_etro name coincide con el de la solicitud
+    assert kit_response.json()["name"] == kit_body["name"]
 
 
 # Función de prueba negativa
 def negative_assert_code_400(kit_body):
     kit_body = get_kit_body(kit_body)
-    response = sender_stand_request.post_new_client_kit(kit_body, data.auth_token)
+    auth_token = get_new_user_token()
+    response = sender_stand_request.post_new_client_kit(kit_body, auth_token)
 
     assert response.status_code == 400
     assert response.json["code"] == 400
