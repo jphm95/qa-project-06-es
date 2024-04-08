@@ -4,8 +4,9 @@ import data
 
 # Función para recibir el token
 def get_new_user_token():
-    new_user_token = data.auth_token
-    return new_user_token
+    user_body = data.user_body
+    resp_user = sender_stand_request.post_new_user(user_body)
+    return resp_user.json()["authToken"]
 
 
 # Función que cambiará el contenido del cuerpo de solicitud en el parametro name.
@@ -24,7 +25,7 @@ def positive_assert(kit_body):
 
     assert kit_response.status_code == 201
     assert kit_response.json() != ""
-    # Assert para comprobar que el cuerpo de la respuesta en el parámauth_etro name coincide con el de la solicitud
+    # Assert para comprobar que el cuerpo de la respuesta en el parámetro name coincide con el de la solicitud
     assert kit_response.json()["name"] == kit_body["name"]
 
 

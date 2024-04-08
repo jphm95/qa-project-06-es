@@ -1,5 +1,4 @@
 import configuration
-import data
 import requests
 
 
@@ -13,10 +12,7 @@ def post_new_user(user_body):
 # Función para crear un Kit personal.
 def post_new_client_kit(kit_body, auth_token):
     # Obtener el token del usuario previamente creado,para la solicitud post  del nuevo kit.
-    headers = {"Authorization": "Bearer" + str(auth_token)}
+    headers = {"Authorization": "Bearer " + str(auth_token)}
     return requests.post(configuration.URL_SERVICE + configuration.KITS_PATH,
                          json=kit_body,
                          headers=headers)
-
-
-response = post_new_client_kit(data.kit_body, data.auth_token)
